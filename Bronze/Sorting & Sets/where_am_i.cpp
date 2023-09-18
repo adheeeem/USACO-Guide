@@ -12,20 +12,32 @@ void solve()
     cin >> s;
     for (int i = 1; i <= 100; i++)
     {
-        int l = 0, r = l + i;
         bool flag = true;
-        while (r < s.size())
+        int l = 0, r = l + i;
+        if (r > s.size())
+            break;
+        set<string> st;
+        string ans;
+        while (r <= s.size())
         {
-            if (s[l] != s[r])
+            string foo = "";
+            for (int i = l; i < r; i++)
+            {
+                foo += s[i];
+            }
+            ll temp = st.size();
+            ans = foo;
+            st.insert(foo);
+            l++; r++;
+            if (temp == st.size())
             {
                 flag = false;
                 break;
             }
-            l++; r++;
         }
         if (flag)
         {
-            cout << i << '\n';
+            cout << ans.size() << '\n';
             break;
         }
     }
@@ -33,8 +45,8 @@ void solve()
 
 int main()
 {
-    //freopen( "whereami.in", "r", stdin );
-    //freopen( "whereami.out", "w", stdout );
+    freopen("whereami.in", "r", stdin);
+    freopen("whereami.out", "w", stdout);
     int t;
     t = 1;
     // cin >> t;
